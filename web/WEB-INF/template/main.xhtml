@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      >
+    <h:head>
+        <title>Title</title>
+        
+    </h:head>
+    <h:body>
+        <h:outputStylesheet library="default" name="css/style.css" />
+        <p:layout fullPage="true">
+            <p:layoutUnit position="north" size="80" resizable="true" closable="true" collapsible="true">
+                <h1>
+                <h:outputText value="ENTERPRISE PROCESS MANAGEMENT CONTROL CONSOLE" />
+                </h1>
+            </p:layoutUnit>
+            <p:layoutUnit position="center">
+                <ui:insert name="content">Put default content here, if any.</ui:insert>
+            </p:layoutUnit>
+            <p:layoutUnit position="south" size="30" resizable="true" closable="true" collapsible="true">
+              <h:outputText value="ENTERPRISE PROCESS MANAGEMENT CONTROL CONSOLE" />
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="240" header="Navigator" resizable="true" closable="true" collapsible="true">
+                <h:form>
+
+
+                    <ui:include src="/WEB-INF/template/navigator.xhtml" />
+
+
+                </h:form>
+            </p:layoutUnit>
+
+
+
+        </p:layout>
+    </h:body>
+</html>

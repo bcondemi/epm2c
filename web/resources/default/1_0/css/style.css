@@ -1,0 +1,127 @@
+
+
+
+
+
+
+
+/*
+# Seven-character color codes:
+mainColorCode=#4A598C
+mainColorTextColorCode=#FFFFFF
+pageBackgroundColorCode=#EBF1F5
+pageTextColorCode=#333333
+topBackgroundColorCode=#4A71AD
+topTextColorCode=#FFFFFF
+topHeadingTextColorCode=#4A598C
+borderColorCode=#A3BED8
+borderTextColorCode=#FFFFFF
+activeTabColorCode=#B0CDE6
+activeTabTextColorCode=#3C3C3C
+inactiveTabColorCode=#D9E3EC
+inactiveTabTextColorCode=#3E5576
+nav1ColorCode=#C9DAEB
+nav1TextColorCode=#000000
+nav2ColorCode=#4A71AD
+nav2TextColorCode=#FFFFFF
+nav3ColorCode=#EAEFF5
+nav3TextColorCode=#000000
+nav4ColorCode=#FFFFFF
+nav4TextColorCode=#000000
+nav5ColorCode=#F7F7F9
+nav5TextColorCode=#000000
+tableControlColorCode=#EDF6FF
+tableControlTextColorCode=#000000
+tableHeaderColorCode=#CFE0F1
+tableHeaderTextColorCode=#343434
+tableCellColorCode=#F2F2F5
+tableCellTextColorCode=#000000
+tableCellAltColorCode=#D3DCE8
+tableCellAltTextColorCode=#000000
+tableSelectedHeaderColorCode=#939CBA
+tableSelectedHeaderTextColorCode=#000000
+tableSelectedColorCode=#C9CEDD
+tableSelectedTextColorCode=#000000
+linkColorCode=#2B7C92
+linkVisitedColorCode=#2B7C92
+linkHoverColorCode=#CC0033
+linkHoverOnDarkColorCode=#FCFC5B
+buttonColorCode=#FCFEFE
+buttonTextColorCode=#586072
+# URLs:
+leftNavBackgroundImageURL=
+pageBackgroundImageURL=/jde/share/images/bodybg.png
+topBackgroundImageURL=/jde/share/images/title-banner.jpg
+logoImageURL=/jde/share/images/fndsscorp.gif
+treeBulletImageURL=/jde/share/images/treebullet.gif
+treeBulletActiveImageURL=/jde/share/images/treebullet-ondark.gif
+reqdIndImageURL=/jde/share/images/required.gif
+reqdIndDarkImageURL=/jde/share/images/required-dark.gif
+ascDescArrowImageURL=/jde/share/images/ascdescarrow.gif
+ascDescArrowDarkImageURL=/jde/share/images/ascdesarrow.png
+# Dimensions:
+logoImageWidth=410
+logoImageHeight=30
+topLinksOffset=25
+# Fonts:
+fontFamily=Tahoma,Verdana,Helvetica,sans-serif
+fontSizeHuge=14pt
+fontSizeBig=11pt
+fontSizeMain=11px
+fontSizeLittle=8pt
+fontSizeFinePrint=7pt
+*/
+BODY {
+    font-size: 11px;
+    margin-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+    color: #333333;
+    background-color: #EBF1F5;
+    background-image: url('/jde/share/images/bodybg.png');
+    background-position: center top;
+    background-repeat: repeat-x;
+}
+.body {
+    font-size: 11px;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+    color: #333333;
+    background-color: #EBF1F5;
+    background-image: url('/resources/default/1_0/image/bodybg.png');
+    background-position: center top;
+    background-repeat: repeat-x;
+}
+INPUT {
+    font-size: 8pt;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+}
+
+TABLE {
+    font-size: 11px;
+    border: 0px none;
+    margin: 0 0 0 0;
+    padding: 0 0 0 0;
+}
+TABLE TD {
+    font-size: 11px;
+    font-family: Tahoma,Verdana,Helvetica,sans-serif;
+}
+.ui-menu.ui-menubar.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix
+{
+    color: #B7D1EA;
+    background-color: #B7D1EA;
+    border: 0px none;
+    
+    
+}
+.ui-layout-unit-header.ui-widget-header.ui-corner-all
+{
+  
+    background-color: #B7D1EA;
+    border: 0px none;  
+}
+
+
+

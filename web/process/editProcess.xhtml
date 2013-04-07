@@ -1,0 +1,121 @@
+<ui:composition template="/WEB-INF/template/main.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                >
+    <ui:define name="content">
+
+        <h:form id="form" prependId="false">
+            <p:growl id="msg"/>
+            <p:commandButton id="cmd" action="#{editProcessBean.save}" value="save" update="msg"/>
+            
+            <p:menubar id="processMenu">                        
+                <p:menuitem id="addProcess" value="Save" outcome="editProcess" icon="ui-icon-disk" 
+                            actionListener="#{editProcessBean.test}"   ajax="true"/>
+                <p:menuitem id="searchProcess" value="Cancel" outcome="searchProcess" icon="ui-icon-close" />                       
+            </p:menubar>
+            <p:separator/>
+            <p:accordionPanel id="accordian" multiple="true" dynamic="false">  
+                <p:tab id="processTab" title="Process definition">  
+                    <h:panelGrid id="processPanel" columns="4" title="Process definition" >  
+                        <h:outputLabel for="pName" value="Process name"/>  
+                        <p:inputText id="pName" value="#{editProcessBean.process.name}" required="false"/>  
+                        <p:outputLabel for="pDescription" value="Description" />  
+                        <p:inputText id="pDescription" value="#{editProcessBean.process.description}" required="false" />  
+                        <h:outputLabel for="pVersion" value="Version number" />  
+                        <p:inputText id="pVersion" value="#{editProcessBean.process.version}" required="false" />  
+                        <p:outputLabel for="pAuthor" value="Author" />  
+                        <p:inputText id="pAuthor" value="#{editProcessBean.process.author}" required="false"/> 
+                        <p:outputLabel for="pCat1" value="Category 1" />  
+                        <p:inputText id="pCat1" value="#{editProcessBean.process.category1}" required="false"/>
+                        <p:outputLabel for="pCat2" value="Category 2" />  
+                        <p:inputText id="pCat2" value="#{editProcessBean.process.category2}" required="false"/>
+                        <p:outputLabel for="pCat3" value="Category 3" />  
+                        <p:inputText id="pCat3" value="#{editProcessBean.process.category3}" required="false"/>
+                        <p:outputLabel for="pCat4" value="Category 4" />  
+                        <p:inputText id="pCat4" value="#{editProcessBean.process.category4}" required="false"/>
+                        <p:outputLabel for="pCat5" value="Category 5" />  
+                        <p:inputText id="pCat5" value="#{editProcessBean.process.category5}" required="false"/>
+                    </h:panelGrid> 
+                </p:tab>
+
+                <p:tab id="paramTab" title="Parameters association"> 
+                    <p:menubar>                        
+                        <p:menuitem value="Add" icon="ui-icon-plus" actionListener="#{editProcessBean.addParameter}" 
+                                    update="paramListPanel"/>
+                        <p:menuitem value="Delete" icon="ui-icon-trash" />                       
+                    </p:menubar>
+                    <p:separator/>
+                    <h:panelGrid id="paramPanel" columns="2">  
+                        <h:outputLabel for="paramName" value="Name: "/>  
+                        <p:inputText id="paramName" value="#{editProcessBean.parameter.name}" /> 
+                        <h:outputLabel for="paramDsc" value="Description: "/>  
+                        <p:inputText id="paramDsc" value="#{editProcessBean.parameter.description}"/> 
+                        <h:outputLabel for="paramDef" value="Default value: "/>  
+                        <p:inputText id="paramDef" value="#{editProcessBean.parameter.defaultValue}"/> 
+
+                        <h:outputLabel value="Type: "/>  
+                        <p:selectOneMenu value="#{editProcessBean.parameter.type}">
+                            <f:selectItem itemLabel="Select One" itemValue="" />
+                            <f:selectItem itemLabel="Litteral" itemValue="1" />
+                            <f:selectItem itemLabel="Numeric" itemValue="2" />
+                            <f:selectItem itemLabel="Date" itemValue="3" />
+                        </p:selectOneMenu>
+
+                    </h:panelGrid> 
+                    <p:separator/>
+
+                    <h:panelGrid id="paramListPanel">
+                        <p:dataTable var="p" value="#{editProcessBean.parameterList}">
+                            <p:column headerText="Name">  
+                                <h:outputText value="#{p.name}" />  
+                            </p:column> 
+
+                            <p:column headerText="Description">  
+                                <h:outputText value="#{p.description}" />  
+                            </p:column> 
+
+                            <p:column headerText="Type">  
+                                <h:outputText value="#{p.type}" />  
+                            </p:column> 
+                            
+                            <p:column headerText="Value">  
+                                <h:outputText value="#{p.value}" />  
+                            </p:column> 
+
+                            <p:column headerText="Default value">  
+                                <h:outputText value="#{p.defaultValue}" />  
+                            </p:column> 
+
+                        </p:dataTable>
+                    </h:panelGrid>
+                </p:tab>
+
+                <p:tab title="File upload"> 
+                    <h:panelGrid id="filePanel">
+                        <p:fileUpload fileUploadListener="#{editProcessBean.upload}"
+                                      mode="advanced"
+                                      label="Select process file"
+
+                                      auto="false"
+                                      sizeLimit="100000" 
+                                      allowTypes="/(\.|\/)(gif|txt|jpe?g|png)$/"/>
+
+
+                    </h:panelGrid> 
+                </p:tab>
+
+
+                <p:commandButton value="Submit"   ajax="false"
+                                 actionListener="#{editProcessBean.addProcess}"/>  
+
+             
+
+
+            </p:accordionPanel>
+        </h:form>     
+    </ui:define>
+</ui:composition>
+

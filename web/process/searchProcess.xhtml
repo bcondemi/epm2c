@@ -1,0 +1,78 @@
+<ui:composition template="/WEB-INF/template/main.xhtml"
+     xmlns="http://www.w3.org/1999/xhtml"
+     xmlns:f="http://java.sun.com/jsf/core"
+     xmlns:h="http://java.sun.com/jsf/html"
+     xmlns:ui="http://java.sun.com/jsf/facelets"
+     xmlns:p="http://primefaces.org/ui"
+     >
+    <ui:define name="content">
+                    <h:form>  
+                        <p:menubar>
+                            <p:menuitem icon="ui-icon-search" value="Find" actionListener="#{searchProcessBean.find()}" update="processList"/>
+                            <p:menuitem outcome="editProcess" icon="ui-icon-plus" value="Add" actionListener="#{searchProcessBean.add()}"/>
+                            <p:menuitem value="Run" 
+                                        icon="ui-icon-play" 
+                                        action="#{runProcessBean.view}">
+                                        <f:setPropertyActionListener target="#{runProcessBean.processName}" value="#{searchProcessBean.currentProcess.name}" />
+                            </p:menuitem>
+                            <p:menuitem icon="ui-icon-trash" value="Delete" actionListener="#{searchProcessBean.delete()}" update="processList"/> 
+                            <p:menuitem icon="ui-icon-close" value="Close" action="#{searchProcessBean.close}"/>                       
+                        </p:menubar>
+                        <p:contextMenu for="processList">
+
+                            <p:menuitem value="Run" 
+                                        icon="ui-icon-play"/>
+                            <p:menuitem value="Delete" 
+                                        icon="ui-icon-trash"/>
+
+                        </p:contextMenu>
+                        <p:separator/>
+                        <p:dataTable id="processList" var="p" value="#{searchProcessBean.processList}" rowKey="#{p.name}"  
+                                     selection="#{searchProcessBean.currentProcess}" selectionMode="single">  
+
+                            <p:column headerText="Name">
+                                <h:outputText value="#{p.name}" />
+                            </p:column>
+                            <p:column headerText="Description">
+                                <h:outputText value="#{p.description}" />
+                            </p:column>
+                            <p:column headerText="Author">
+                                <h:outputText value="#{p.author}" />
+                            </p:column>
+                            <p:column headerText="Creation date">
+                                <h:outputText value="#{p.creationDate}" />
+                            </p:column>
+                            <p:column headerText="Author">
+                                <h:outputText value="#{p.author}" />
+                            </p:column>
+                            <p:column headerText="Version">
+                                <h:outputText value="#{p.version}" />
+                            </p:column>
+                            <p:column headerText="Active">
+                                <h:outputText value="#{p.activae}" />
+                            </p:column>
+                            <p:column headerText="Category 1">
+                                <h:outputText value="#{p.category1}" />
+                            </p:column>
+                            <p:column headerText="Category 2">
+                                <h:outputText value="#{p.category2}" />
+                            </p:column>
+                            <p:column headerText="Category 3">
+                                <h:outputText value="#{p.category3}" />
+                            </p:column>
+                            <p:column headerText="Category 4">
+                                <h:outputText value="#{p.category4}" />
+                            </p:column>
+                            <p:column headerText="Category 5">
+                                <h:outputText value="#{p.category5}" />
+                            </p:column>
+                            <p:column headerText="Path">
+                                <h:outputText value="#{p.path}" />
+                            </p:column>        
+
+                        </p:dataTable>
+
+                    </h:form>
+    </ui:define>
+</ui:composition>
+
