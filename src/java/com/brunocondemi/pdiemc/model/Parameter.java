@@ -18,8 +18,8 @@ public class Parameter implements Serializable{
     private String defaultValue=null;
     private String type=null;
     private String value=null;
-    private ArrayList<ParameterValue> values=null;
-    private final static String[] types = {"String","Number","Date"};
+  
+    private final static String[] types = {"STRING","NUMBER","TYPE"};
 
     public String getValue() {
         return value;
@@ -45,13 +45,7 @@ public class Parameter implements Serializable{
         this.name = name;
     }
 
-    public ArrayList<ParameterValue> getValues() {
-        return values;
-    }
-
-    public void setValues(ArrayList<ParameterValue> values) {
-        this.values = values;
-    }
+ 
 
     public static String[] getTypes() {
         return types;

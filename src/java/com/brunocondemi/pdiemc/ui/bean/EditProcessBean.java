@@ -9,27 +9,20 @@ import com.brunocondemi.pdiemc.entity.ParametersEntityPK;
 import com.brunocondemi.pdiemc.entity.ProcessEntity;
 import com.brunocondemi.pdiemc.model.Parameter;
 import com.brunocondemi.pdiemc.model.Process;
-import com.brunocondemi.pdiemc.ui.utility.ProcessUploadController;
-import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -117,6 +110,10 @@ public class EditProcessBean implements Serializable {
         p.setDefaultValue(parameter.getDefaultValue());
         p.setValue(parameter.getValue());
         parameterList.add(p);
+        parameter.setName(null);
+        parameter.setDescription(null);
+        parameter.setType(null);
+        parameter.setDefaultValue(null);
 
     }
 
@@ -133,7 +130,7 @@ public class EditProcessBean implements Serializable {
             //pe.setCreationDate(new Date());
             pe.setCat1(process.getCategory1());
             pe.setCat2(process.getCategory2());
-            pe.setCat3(process.getCategory3());
+           // pe.setCat3(process.getCategory3());
             pe.setCat4(process.getCategory4());
             pe.setCat5(process.getCategory5());
             

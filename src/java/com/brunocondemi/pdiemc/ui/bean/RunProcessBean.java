@@ -104,6 +104,14 @@ public class RunProcessBean {
         p.setPath("C:\\kettle\\job.kjb");
         p.setAuthor("Bruno Condemi");
         processName=p.getName();
+        Parameter p1 = new Parameter();
+        p1.setName("param1");
+        Parameter p2 = new Parameter();
+        p2.setName("param2");
+        ArrayList<Parameter> list = new ArrayList<Parameter>();
+        list.add(p1);
+        list.add(p2);
+        p.setParameters(list);
     }
     
 }

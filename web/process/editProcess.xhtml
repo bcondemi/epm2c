@@ -21,11 +21,11 @@
                 <p:tab id="processTab" title="Process definition">  
                     <h:panelGrid id="processPanel" columns="4" title="Process definition" >  
                         <h:outputLabel for="pName" value="Process name"/>  
-                        <p:inputText id="pName" value="#{editProcessBean.process.name}" required="false"/>  
+                        <p:inputText id="pName" value="#{editProcessBean.process.name}" required="true"/>  
                         <p:outputLabel for="pDescription" value="Description" />  
-                        <p:inputText id="pDescription" value="#{editProcessBean.process.description}" required="false" />  
+                        <p:inputText id="pDescription" value="#{editProcessBean.process.description}" required="true" />  
                         <h:outputLabel for="pVersion" value="Version number" />  
-                        <p:inputText id="pVersion" value="#{editProcessBean.process.version}" required="false" />  
+                        <p:inputText id="pVersion" value="#{editProcessBean.process.version}" required="false" disabled="true"/>  
                         <p:outputLabel for="pAuthor" value="Author" />  
                         <p:inputText id="pAuthor" value="#{editProcessBean.process.author}" required="false"/> 
                         <p:outputLabel for="pCat1" value="Category 1" />  
@@ -50,14 +50,14 @@
                     <p:separator/>
                     <h:panelGrid id="paramPanel" columns="2">  
                         <h:outputLabel for="paramName" value="Name: "/>  
-                        <p:inputText id="paramName" value="#{editProcessBean.parameter.name}" /> 
+                        <p:inputText id="paramName" value="#{editProcessBean.parameter.name}" rendered="true"/> 
                         <h:outputLabel for="paramDsc" value="Description: "/>  
-                        <p:inputText id="paramDsc" value="#{editProcessBean.parameter.description}"/> 
+                        <p:inputText id="paramDsc" value="#{editProcessBean.parameter.description}" required="true"/> 
                         <h:outputLabel for="paramDef" value="Default value: "/>  
                         <p:inputText id="paramDef" value="#{editProcessBean.parameter.defaultValue}"/> 
 
                         <h:outputLabel value="Type: "/>  
-                        <p:selectOneMenu value="#{editProcessBean.parameter.type}">
+                        <p:selectOneMenu value="#{editProcessBean.parameter.type}" required="true">
                             <f:selectItem itemLabel="Select One" itemValue="" />
                             <f:selectItem itemLabel="Litteral" itemValue="1" />
                             <f:selectItem itemLabel="Numeric" itemValue="2" />

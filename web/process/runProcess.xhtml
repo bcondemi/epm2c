@@ -8,30 +8,35 @@
                 >
     <ui:define name="content">
         <h:form>
-            <p:panel header="Submit process"  >
+            <p:outputPanel  >
+                
+                <p:menubar id="runMenu">                        
+                    <p:menuitem id="runProcess" value="Run" outcome="editProcess" icon="ui-icon-disk" 
+                                ajax="true"/>
+                    <p:menuitem id="searchProcess" value="Cancel" outcome="searchProcess" icon="ui-icon-close" />                       
+                </p:menubar>
+                <p:separator/>
+                
+                <p:panelGrid  columns="2">
 
-                <p:panelGrid  columns="1">
-                    #{runProcessBean.p.name}
-                    <br />
-                    #{runProcessBean.p.description}
-                    <br />                
-                    #{runProcessBean.p.author}
-                    <br />
-                    #{runProcessBean.p.path}
+                    <h:outputText value="Process name: " style="font-weight: bold"/>
+                    <h:outputText value="#{runProcessBean.p.name}" />
+                    <h:outputText value="Description: "  style="font-weight: bold"/>
+                    <h:outputText value="#{runProcessBean.p.description}" />
+                    <h:outputText value="Version: "  style="font-weight: bold"/>
+                    <h:outputText value="#{runProcessBean.p.version}" />
+                    <c:forEach var="p" items="${runProcessBean.p.parameters}">
+                        <h:outputLabel value="#{p.name}: " style="font-weight: bold"/>  
+                        <p:inputText value="#{p.defaultValue}"/> 
+                    </c:forEach>
                 </p:panelGrid>    
                 <p:growl id="growl" showDetail="true" /> 
 
-                <p:panelGrid id="p2"  columns="2" >
 
+                <p:commandButton value="Submit" actionListener="#{runProcessBean.execute}" update="growl"/>
+                <p:commandButton value="Cancel" />
 
-                    <c:forEach var="p" items="${runProcessBean.paramList}">
-                        <h:outputLabel value="#{p.name}: "/>  
-                        <p:inputText value="#{p.defaultValue}"/> 
-                    </c:forEach>
-                    <p:commandButton value="Submit" actionListener="#{runProcessBean.execute}" update="growl"/>
-                    <p:commandButton value="Cancel" />
-                </p:panelGrid>
-            </p:panel>
+            </p:outputPanel>
         </h:form>
     </ui:define>
 </ui:composition>
