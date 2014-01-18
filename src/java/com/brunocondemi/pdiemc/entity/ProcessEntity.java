@@ -25,7 +25,7 @@ import javax.xml.bind.annotation.XmlRootElement;
  * @author bruno
  */
 @Entity
-@Table(name = "PROCESS", catalog = "", schema = "APP")
+@Table(name = "PROCESS", catalog = "", schema = "EPM2C")
 @XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "ProcessEntity.findAll", query = "SELECT p FROM ProcessEntity p"),

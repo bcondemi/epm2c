@@ -6,6 +6,7 @@ package com.brunocondemi.pdiemc.logic;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.ejb.Stateless;
 import org.pentaho.di.core.KettleEnvironment;
 import org.pentaho.di.core.exception.KettleException;
 import org.pentaho.di.core.exception.KettleXMLException;
@@ -17,6 +18,7 @@ import org.pentaho.di.job.JobMeta;
  *
  * @author bruno
  */
+@Stateless
 public class ProcessExecutor {
     public void runProcess(String path) throws KettleXMLException, KettleException{
          LogWriter log = LogWriter.getInstance();
@@ -29,9 +31,9 @@ public class ProcessExecutor {
     job.getJobMeta().setArguments(null);
     job.initializeVariablesFrom(null);
     job.getJobMeta().setInternalKettleVariables(job);
-   job.copyParametersFrom(job.getJobMeta());
-     job.start();
-      job.waitUntilFinished();
+    job.copyParametersFrom(job.getJobMeta());
+    job.start();
+    job.waitUntilFinished();
       
         
     }

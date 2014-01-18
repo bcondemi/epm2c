@@ -5,8 +5,8 @@
         <property name="serverName" value="localhost"/>
         <property name="portNumber" value="1527"/>
         <property name="databaseName" value="EPM2C"/>
-        <property name="User" value="administrator"/>
-        <property name="Password" value="Password1"/>
+        <property name="User" value="epm2c"/>
+        <property name="Password" value="epm2c"/>
         <property name="URL" value="jdbc:derby://localhost:1527/EPM2C"/>
         <property name="driverClass" value="org.apache.derby.jdbc.ClientDriver"/>
     </jdbc-connection-pool>

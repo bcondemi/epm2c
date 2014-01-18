@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -33,6 +34,8 @@ public class RunProcessBean {
    private List<Parameter> paramList;
    private String processName;
    private Process p;
+   @EJB
+   ProcessExecutor processExecutor;
 
     public Process getP() {
         return p;
@@ -72,10 +75,10 @@ public class RunProcessBean {
            System.out.println(i.next().getDefaultValue());
        }
        }
-       ProcessExecutor e = new ProcessExecutor();
+       
        try {
            System.out.println("run: "+p.getName());
-           e.runProcess(p.getPath());
+           processExecutor.runProcess(p.getPath());
        } catch (KettleXMLException ex) {
            Logger.getLogger(RunProcessBean.class.getName()).log(Level.SEVERE, null, ex);
        } catch (KettleException ex) {
