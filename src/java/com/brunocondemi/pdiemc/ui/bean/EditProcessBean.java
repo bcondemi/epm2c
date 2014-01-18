@@ -11,6 +11,7 @@ import com.brunocondemi.pdiemc.model.Parameter;
 import com.brunocondemi.pdiemc.model.Process;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
@@ -58,7 +59,9 @@ public class EditProcessBean implements Serializable {
 //            FacesContext.getCurrentInstance().addMessage(null, msg);
     }
 
-    public void addProcess() {
+    public String addProcess() {
+        process = new Process();
+        return "editProcess";
     }
 
     public EditProcessBean() {
@@ -127,10 +130,11 @@ public class EditProcessBean implements Serializable {
             pe.setAuthor(process.getAuthor());
             pe.setActive(0);
             pe.setVersion(1);
+            pe.setCreationDate(new Date());
             //pe.setCreationDate(new Date());
             pe.setCat1(process.getCategory1());
             pe.setCat2(process.getCategory2());
-           // pe.setCat3(process.getCategory3());
+            pe.setCat3(process.getCategory3());
             pe.setCat4(process.getCategory4());
             pe.setCat5(process.getCategory5());
             
@@ -165,6 +169,9 @@ public class EditProcessBean implements Serializable {
             //UI update
             FacesMessage msg = new FacesMessage("Succesful");
             FacesContext.getCurrentInstance().addMessage(null, msg);
+            //Ready for new process
+            process=new Process();
+            
         } catch (Exception e) {
             
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);

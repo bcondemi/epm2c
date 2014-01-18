@@ -32,6 +32,7 @@ public class NavigatorBean {
 		TreeNode node010 = new DefaultTreeNode("Node 0.1.0", node01);
 		
 		TreeNode node100 = new DefaultTreeNode("Node 1.0.0", node10);
+                
 	}
 
 	public TreeNode getRoot() {

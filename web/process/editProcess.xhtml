@@ -9,11 +9,11 @@
 
         <h:form id="form" prependId="false">
             <p:growl id="msg"/>
-            <p:commandButton id="cmd" action="#{editProcessBean.save}" value="save" update="msg"/>
+           
             
             <p:menubar id="processMenu">                        
-                <p:menuitem id="addProcess" value="Save" outcome="editProcess" icon="ui-icon-disk" 
-                            actionListener="#{editProcessBean.test}"   ajax="true"/>
+                <p:menuitem id="save" value="Save" icon="ui-icon-disk" 
+                            action="#{editProcessBean.save()}"   update="msg" ajax="true"/>
                 <p:menuitem id="searchProcess" value="Cancel" outcome="searchProcess" icon="ui-icon-close" />                       
             </p:menubar>
             <p:separator/>
@@ -50,14 +50,14 @@
                     <p:separator/>
                     <h:panelGrid id="paramPanel" columns="2">  
                         <h:outputLabel for="paramName" value="Name: "/>  
-                        <p:inputText id="paramName" value="#{editProcessBean.parameter.name}" rendered="true"/> 
+                        <p:inputText id="paramName" value="#{editProcessBean.parameter.name}" /> 
                         <h:outputLabel for="paramDsc" value="Description: "/>  
-                        <p:inputText id="paramDsc" value="#{editProcessBean.parameter.description}" required="true"/> 
+                        <p:inputText id="paramDsc" value="#{editProcessBean.parameter.description}" /> 
                         <h:outputLabel for="paramDef" value="Default value: "/>  
                         <p:inputText id="paramDef" value="#{editProcessBean.parameter.defaultValue}"/> 
 
                         <h:outputLabel value="Type: "/>  
-                        <p:selectOneMenu value="#{editProcessBean.parameter.type}" required="true">
+                        <p:selectOneMenu value="#{editProcessBean.parameter.type}" >
                             <f:selectItem itemLabel="Select One" itemValue="" />
                             <f:selectItem itemLabel="Litteral" itemValue="1" />
                             <f:selectItem itemLabel="Numeric" itemValue="2" />
