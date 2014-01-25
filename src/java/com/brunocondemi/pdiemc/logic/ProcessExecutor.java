@@ -4,6 +4,8 @@
  */
 package com.brunocondemi.pdiemc.logic;
 
+import com.brunocondemi.pdiemc.model.Parameter;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
@@ -19,23 +21,33 @@ import org.pentaho.di.job.JobMeta;
  * @author bruno
  */
 @Stateless
-public class ProcessExecutor {
-    public void runProcess(String path) throws KettleXMLException, KettleException{
-         LogWriter log = LogWriter.getInstance();
-         KettleEnvironment.init();
-         
-  
-  //String file ="C:\\kettle\\job.kjb";
-    JobMeta jobMeta = new JobMeta(path, null,null);
-    Job job = new Job(null, jobMeta);
-    job.getJobMeta().setArguments(null);
-    job.initializeVariablesFrom(null);
-    job.getJobMeta().setInternalKettleVariables(job);
-    job.copyParametersFrom(job.getJobMeta());
-    job.start();
-    job.waitUntilFinished();
-      
+public class ProcessExecutor implements IProcessExecutor {
+
+    public void runProcess(String path, ArrayList<Parameter> params) {
+        LogWriter log = LogWriter.getInstance();
+        try {
+            KettleEnvironment.init();
+        } catch (KettleException ex) {
+            Logger.getLogger(ProcessExecutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        //String file ="C:\\kettle\\job.kjb";
+        JobMeta jobMeta = null;
+        try {
+            jobMeta = new JobMeta(path, null, null);
+        } catch (KettleXMLException ex) {
+            Logger.getLogger(ProcessExecutor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
+        Job job = new Job(null, jobMeta);
+       
+        job.getJobMeta().setArguments(null);
+        job.initializeVariablesFrom(null);
+        job.getJobMeta().setInternalKettleVariables(job);
+        job.copyParametersFrom(job.getJobMeta());
+        job.start();
+        job.waitUntilFinished();
+
     }
-    
+
 }

@@ -86,14 +86,10 @@ public class RunProcessBean {
        }
        }
        
-       try {
+     
            System.out.println("run: "+p.getName());
-           processExecutor.runProcess(p.getPath());
-       } catch (KettleXMLException ex) {
-           Logger.getLogger(RunProcessBean.class.getName()).log(Level.SEVERE, null, ex);
-       } catch (KettleException ex) {
-           Logger.getLogger(RunProcessBean.class.getName()).log(Level.SEVERE, null, ex);
-       }
+           processExecutor.runProcess(p.getPath(),null);
+      
        
      
        FacesContext context = FacesContext.getCurrentInstance();  

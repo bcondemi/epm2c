@@ -9,6 +9,11 @@ import com.brunocondemi.pdiemc.entity.ParametersEntityPK;
 import com.brunocondemi.pdiemc.entity.ProcessEntity;
 import com.brunocondemi.pdiemc.model.Parameter;
 import com.brunocondemi.pdiemc.model.Process;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -41,26 +46,52 @@ public class EditProcessBean implements Serializable {
     private EntityManager em;
     @Resource
     private javax.transaction.UserTransaction utx;
+    private String upload;
 
-    public void test(){
+    public String getUpload() {
+        return upload;
+    }
+
+    public void setUpload(String upload) {
+        this.upload = upload;
+        System.out.println(upload);
+    }
+
+    public void test() {
         System.out.println("test");
         FacesMessage msg = new FacesMessage("Failed");
-            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
-            FacesContext.getCurrentInstance().addMessage(null, msg);
-    
+        msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
+
     }
+
     public void upload(FileUploadEvent event) {
-
+        System.out.println("start upload");
         System.out.println(event.getFile().getFileName());
+        try {
+            FileInputStream is = (FileInputStream) event.getFile().getInputstream();
+            File f2 = new File("/Users/bruno/Documents/out.tmp");
+            OutputStream out = new FileOutputStream(f2);
+            byte[] buf = new byte[1024];
+            int len;
+            while ((len = is.read(buf)) > 0) {
+                out.write(buf, 0, len);
+            }
+            is.close();
+            out.close();
 
-        //FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
-
+            //FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 //            FacesMessage msg = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
 //            FacesContext.getCurrentInstance().addMessage(null, msg);
+        } catch (IOException ex) {
+            Logger.getLogger(EditProcessBean.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public String addProcess() {
+        System.out.println("Add new process");
         process = new Process();
+        parameterList = new ArrayList<Parameter>();
         return "editProcess";
     }
 
@@ -121,8 +152,7 @@ public class EditProcessBean implements Serializable {
     }
 
     public void save() {
-        
-        
+
         try {
             //Set Process Entity from bean
             ProcessEntity pe = new ProcessEntity(process.getName());
@@ -137,19 +167,19 @@ public class EditProcessBean implements Serializable {
             pe.setCat3(process.getCategory3());
             pe.setCat4(process.getCategory4());
             pe.setCat5(process.getCategory5());
-            
+
             //Start database transaction
             utx.begin();
             //Persist process
             em.persist(pe);
-            
+
             //Loop over parameters
             Iterator<Parameter> i = parameterList.iterator();
-            int j=1;
-            while(i.hasNext()){
+            int j = 1;
+            while (i.hasNext()) {
                 Parameter cp = i.next();
                 ParametersEntity parmEntity = new ParametersEntity();
-                ParametersEntityPK pk = new ParametersEntityPK(process.getName(),cp.getName());
+                ParametersEntityPK pk = new ParametersEntityPK(process.getName(), cp.getName());
                 parmEntity.setParametersEntityPK(pk);
                 parmEntity.setType(cp.getType());
                 parmEntity.setDescription(cp.getDescription());
@@ -157,29 +187,29 @@ public class EditProcessBean implements Serializable {
                 parmEntity.setValue(cp.getValue());
                 parmEntity.setSequence(j);
                 j++;
-                
+
                 //Persist paramaters
                 em.persist(parmEntity);
-                
+
             }
-           
+
             //Commit trasaction
             utx.commit();
-            
+
             //UI update
             FacesMessage msg = new FacesMessage("Succesful");
             FacesContext.getCurrentInstance().addMessage(null, msg);
             //Ready for new process
-            process=new Process();
-            
+            process = new Process();
+
         } catch (Exception e) {
-            
+
             Logger.getLogger(getClass().getName()).log(Level.SEVERE, "exception caught", e);
             FacesMessage msg = new FacesMessage("Operation failed");
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             FacesContext.getCurrentInstance().addMessage(null, msg);
             //throw new RuntimeException(e);
         }
-       
+
     }
 }

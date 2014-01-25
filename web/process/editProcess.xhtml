@@ -9,8 +9,8 @@
 
         <h:form id="form" prependId="false">
             <p:growl id="msg"/>
-           
-            
+
+
             <p:menubar id="processMenu">                        
                 <p:menuitem id="save" value="Save" icon="ui-icon-disk" 
                             action="#{editProcessBean.save()}"   update="msg" ajax="true"/>
@@ -80,7 +80,7 @@
                             <p:column headerText="Type">  
                                 <h:outputText value="#{p.type}" />  
                             </p:column> 
-                            
+
                             <p:column headerText="Value">  
                                 <h:outputText value="#{p.value}" />  
                             </p:column> 
@@ -98,20 +98,16 @@
                         <p:fileUpload fileUploadListener="#{editProcessBean.upload}"
                                       mode="advanced"
                                       label="Select process file"
-
-                                      auto="false"
+                                      auto="true"
                                       sizeLimit="100000" 
-                                      allowTypes="/(\.|\/)(gif|txt|jpe?g|png)$/"/>
-
-
+                                      allowTypes="/(\.|\/)(kwar)$/" />
                     </h:panelGrid> 
                 </p:tab>
 
 
-                <p:commandButton value="Submit"   ajax="false"
-                                 actionListener="#{editProcessBean.addProcess}"/>  
 
-             
+
+
 
 
             </p:accordionPanel>

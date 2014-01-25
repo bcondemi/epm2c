@@ -9,7 +9,7 @@
                     <h:form>  
                         <p:menubar>
                             <p:menuitem icon="ui-icon-search" value="Find" actionListener="#{searchProcessBean.find()}" update="processList"/>
-                            <p:menuitem  icon="ui-icon-plus" value="Add" action="#{editProcessBean.addProcess()}" outcome="editProcess"/>
+                            <p:menuitem  icon="ui-icon-plus" value="Add" action="#{editProcessBean.addProcess()}" ajax="false" />
                             <p:menuitem value="Run" 
                                         icon="ui-icon-play" 
                                         action="#{runProcessBean.view}">
