@@ -87,8 +87,7 @@ BODY {
 .body {
     font-size: 11px;
     font-family: Tahoma,Verdana,Helvetica,sans-serif;
-    color: #333333;
-    background-color: #EBF1F5;
+    color: #000000;
     background-image: url('/resources/default/1_0/image/bodybg.png');
     background-position: center top;
     background-repeat: repeat-x;
@@ -103,15 +102,17 @@ TABLE {
     border: 0px none;
     margin: 0 0 0 0;
     padding: 0 0 0 0;
+    
 }
 TABLE TD {
-    font-size: 11px;
+    font-size: 12px;
     font-family: Tahoma,Verdana,Helvetica,sans-serif;
+   
 }
 .ui-menu.ui-menubar.ui-widget.ui-widget-content.ui-corner-all.ui-helper-clearfix
 {
-    color: #B7D1EA;
-    background-color: #B7D1EA;
+    color: #003d5b;
+    background-color: #EBF1F5;
     border: 0px none;
     
     

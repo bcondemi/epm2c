@@ -52,6 +52,9 @@ public class ProcessEntity implements Serializable {
     @Column(name = "DESCRIPTION")
     private String description;
     @Size(max = 30)
+    @Column(name = "FILE_NAME")
+    private String fileNAme;
+    @Size(max = 30)
     @Column(name = "AUTHOR")
     private String author;
     @Column(name = "VERSION")
@@ -99,6 +102,15 @@ public class ProcessEntity implements Serializable {
         this.description = description;
     }
 
+    public String getFileNAme() {
+        return fileNAme;
+    }
+
+    public void setFileNAme(String fileNAme) {
+        this.fileNAme = fileNAme;
+    }
+
+    
     public String getAuthor() {
         return author;
     }

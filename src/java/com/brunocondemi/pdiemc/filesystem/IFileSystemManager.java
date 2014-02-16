@@ -15,7 +15,7 @@ import java.io.InputStream;
  */
 public interface IFileSystemManager {
    
-    public void addProcess(InputStream inputStream);
+    public void addProcess(InputStream inputStream, String fileName);
     public void deleteProcess(String processName);
     public void updateProcess(String processName);
     public File getProcess(String processName);

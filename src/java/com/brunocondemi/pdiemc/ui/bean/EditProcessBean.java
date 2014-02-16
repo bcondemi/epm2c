@@ -7,6 +7,7 @@ package com.brunocondemi.pdiemc.ui.bean;
 import com.brunocondemi.pdiemc.entity.ParametersEntity;
 import com.brunocondemi.pdiemc.entity.ParametersEntityPK;
 import com.brunocondemi.pdiemc.entity.ProcessEntity;
+import com.brunocondemi.pdiemc.filesystem.IntegratedFileSystem;
 import com.brunocondemi.pdiemc.model.Parameter;
 import com.brunocondemi.pdiemc.model.Process;
 import java.io.File;
@@ -70,15 +71,12 @@ public class EditProcessBean implements Serializable {
         System.out.println(event.getFile().getFileName());
         try {
             FileInputStream is = (FileInputStream) event.getFile().getInputstream();
-            File f2 = new File("/Users/bruno/Documents/out.tmp");
-            OutputStream out = new FileOutputStream(f2);
-            byte[] buf = new byte[1024];
-            int len;
-            while ((len = is.read(buf)) > 0) {
-                out.write(buf, 0, len);
-            }
-            is.close();
-            out.close();
+            IntegratedFileSystem ifs = new IntegratedFileSystem();
+            String tmp = event.getFile().getFileName();
+            System.out.println("name prima:"+tmp);
+            String[] tmpa=tmp.split("\\.",2);
+            System.out.println("fFile: "+tmpa[0]);
+            ifs.addProcess(is, tmpa[0]);
 
             //FacesMessage msg = new FacesMessage("Succesful", event.getFile().getFileName() + " is uploaded.");
 //            FacesMessage msg = new FacesMessage("Succesful", file.getFileName() + " is uploaded.");
